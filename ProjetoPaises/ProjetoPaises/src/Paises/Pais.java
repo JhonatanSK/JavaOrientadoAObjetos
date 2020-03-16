@@ -207,49 +207,6 @@ public class Pais {
 	
 	//método que retorna um vetor de 3 países.
 	
-	/*
-	public Pais[] retornarTresPaises(int id, int id1, int id2) {
-		Pais[] pais = new Pais[3];
-		
-		String sqlSelect = "SELECT * FROM paises WHERE paises.id = ? or paises.id = ? or paises.id = ?";
-		
-		try (Connection conn = ConnectionFactory.obtemConexao();
-				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
-			stm.setInt(1, id);
-			stm.setInt(2, id1);
-			stm.setInt(3, id2);
-			try (ResultSet rs = stm.executeQuery();) {
-				int i = 0;
-				while(rs.next()) {
-					String concatenar = "";
-					
-					Pais paisObj = new Pais();					
-					paisObj.setId(rs.getInt("id"+concatenar));
-					if(i < 3) {
-						concatenar = "";
-						i++;
-						concatenar = "" + i;
-					}
-
-					paisObj.setNome(rs.getString("nome"));
-					paisObj.setPopulacao(rs.getLong("populacao"));
-					paisObj.setArea(rs.getDouble("area"));
-					pais[i] = paisObj;
-					
-				}
-
-			} catch(SQLException e) {
-				e.printStackTrace();
-			}
-		} catch(SQLException e1) {
-			System.out.print(e1.getStackTrace());
-		}
-		
-		return pais;
-				
-	}
-	*/
-
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ArrayList retornarTresPaises() {
 		ArrayList paises = new ArrayList();
