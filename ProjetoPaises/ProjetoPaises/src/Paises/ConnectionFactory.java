@@ -16,5 +16,6 @@ public class ConnectionFactory {
 	
 	public static Connection obtemConexao() throws SQLException {
 		return DriverManager.getConnection("jdbc:mysql://localhost/SistemaPaises?useTimezone=true&serverTimezone=UTC&useSSL=false&user=root&password=roott");
+
 	}
 }
