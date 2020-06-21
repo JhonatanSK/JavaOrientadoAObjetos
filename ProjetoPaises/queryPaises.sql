@@ -8,9 +8,14 @@ populacao bigint,
 area numeric (15,2)
 );
 
+SELECT id, nome, populacao, area FROM paises WHERE id = 4;
+
 select * from paises;
 
+delete from paises where id > 6;
+
 insert into paises(nome, populacao, area) values ("Italia", 300000, 200.20);
+insert into paises(nome, populacao, area) values ("Japão", 300000, 200.20);
 
 Select id, nome, populacao, area FROM paises order by populacao desc limit 1;
 
