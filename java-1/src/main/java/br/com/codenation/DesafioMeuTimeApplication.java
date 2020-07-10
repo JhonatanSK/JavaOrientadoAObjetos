@@ -1,5 +1,6 @@
 package br.com.codenation;
 
+import br.com.codenation.exceptions.CapitaoNaoInformadoException;
 import br.com.codenation.exceptions.IdentificadorUtilizadoException;
 import br.com.codenation.exceptions.JogadorNaoEncontradoException;
 import br.com.codenation.exceptions.TimeNaoEncontradoException;
@@ -39,7 +40,7 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
 	}
 
 	public void definirCapitao(Long idJogador) {
-		verificarSeExisteJogador(idJogador);
+		if(!verificarSeExisteJogador(idJogador))  throw new JogadorNaoEncontradoException();
 		try{
 			Long idTimeJogador = buscarIdTimePorJogador(idJogador);
 			for(Jogador jogador: jogadores) {
@@ -54,8 +55,9 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
 	}
 
 	public Long buscarCapitaoDoTime(Long idTime) {
+		if(!verificarSeTimeExiste(idTime)) throw new TimeNaoEncontradoException();
+		Long idJogador = null;
 		try{
-			verificarSeTimeExiste(idTime);
 			for(Jogador jogador : jogadores){
 				if(jogador.isCapitao() && jogador.getIdTime() == idTime) return jogador.getId();
 			}
@@ -63,6 +65,8 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
 		} catch (Exception e) {
 			throw new UnsupportedOperationException();
 		}
+		if (idJogador == null ) throw new CapitaoNaoInformadoException();
+
 		return 0L;
 	}
 
@@ -195,6 +199,7 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
 
 	public List<Long> buscarTopJogadores(Integer top) {
 		List<Long> topJogadores = new ArrayList<Long>();
+		if(jogadores.size() <= 0) return topJogadores;
 		try{
 			Integer atual = 0;
 			Integer anterior = 0;
